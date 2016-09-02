@@ -1,4 +1,8 @@
-<?php define("LOCAL_PATH_BOOTSTRAP", __DIR__); require LOCAL_PATH_BOOTSTRAP . DIRECTORY_SEPARATOR . 'bootstrap.php';
+<?php
+define("LOCAL_PATH_BOOTSTRAP", __DIR__);
+define("LOCAL_PATH_KEYS", dirname(LOCAL_PATH_BOOTSTRAP) . DIRECTORY_SEPARATOR . 'keys');
+require LOCAL_PATH_BOOTSTRAP . DIRECTORY_SEPARATOR . 'bootstrap.php';
+
 $data = [
     'string' => 'This is a string',
     'integer' => 10,
@@ -41,11 +45,11 @@ $data = [
 $encrypted = \PowerTools\SecureHTTP::factory([
     'consumer' => '153eePP2185e4444$2215153335d1R',
     'token' => '1821dZZ5-4-35-16fj6225ak-DWWZvnk-d1qNl5R',
-    'keyFolder' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'keys'
+    'keyFolder' => LOCAL_PATH_KEYS
 ])->encrypt($data);
 
 $decrypted = \PowerTools\SecureHTTP::factory([
-    'keyFolder' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'keys'
+    'keyFolder' => LOCAL_PATH_KEYS
 ])->decrypt($encrypted);
 ?>
 <!DOCTYPE html>
